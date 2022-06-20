@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <property name="LOG_PATH" value="logs"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%cyan(%d{HH:mm:ss.SSS}) [%boldYellow(%thread)] %highlight(%-5level) %boldBlue(%logger{5}#%method)[%line] - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+
+    </appender>
+
+    <appender name="LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 注意这里要用 SizeAndTimeBasedRollingPolicy 这个策略，可以兼容日期和大小 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- daily rollover 保存历史记录到这个文件夹一日起为后缀 -->
+            <fileNamePattern>${LOG_PATH}/log-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 每个log的最大值 -->
+            <maxFileSize>100MB</maxFileSize>
+            <!-- 保存多少天的日志 -->
+            <maxHistory>365</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{5}#%method[%line] - %msg %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="ERROR"/>
+    <logger name="org.springframework.data.mongodb.core" level="INFO"/>
+    <logger name="org.mongodb" level="INFO"/>
+
+
+    <!--下面是3个不同的log配置-->
+    <springProfile name="dev">
+        <root level="debug">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="LOG_FILE"/>
+        </root>
+    </springProfile>
+
+</configuration>

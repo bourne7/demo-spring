@@ -1,0 +1,68 @@
+plugins {
+    id "org.springframework.boot" version '2.4.5'
+    id "idea"
+    id "java"
+}
+
+allprojects {
+    repositories {
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+    }
+}
+
+version = '1.0.1'
+group = 'org.gradle.samples'
+
+compileJava.options.encoding = 'UTF-8'
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '+'
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web-services
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web-services', version: '+'
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
+    implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '+'
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '+'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '+'
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '+'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '+'
+
+    // Tools
+    implementation group: 'com.google.guava', name: 'guava', version: '+'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '+'
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '+'
+    implementation group: 'org.apache.commons', name: 'commons-pool2', version: '+'
+    implementation group: 'org.apache.commons', name: 'commons-text', version: '+'
+    implementation group: 'org.apache.commons', name: 'commons-math3', version: '+'
+    implementation group: 'org.apache.commons', name: 'commons-compress', version: '+'
+    implementation group: 'commons-codec', name: 'commons-codec', version: '+'
+
+    // DAO
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '+'
+
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:+"
+    implementation "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:+"
+
+    implementation "com.alibaba:druid-spring-boot-starter:+"
+    implementation "mysql:mysql-connector-java:+"
+
+    // https://www.baeldung.com/spring-rest-openapi-documentation
+    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
+    // http://localhost:8080/swagger-ui.html
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '+'
+
+    // implementation "com.querydsl:querydsl-core:+"
+    // implementation "com.querydsl:querydsl-jpa:+"
+    // implementation "com.querydsl:querydsl-mongodb:+"
+    // implementation "com.querydsl:querydsl-apt:+"
+}
+
+// 根目录任务
+task helloWorldFromBase(group: "Custom", description: "Hello world task") {
+    println "Hello World!"
+}

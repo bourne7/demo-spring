@@ -1,0 +1,36 @@
+# 忽略所有的包含 .gradle 的文件或者目录
+.gradle
+.idea
+
+# 忽略根目录下面的 build 目录。
+/build
+/classes
+/gradle
+/logs
+/log
+/out
+/bin
+
+# 忽略根目录下面的 gradlew 文件
+/gradlew
+/gradlew.bat
+
+### IntelliJ IDEA ###
+*.iws
+*.iml
+*.ipr
+
+### Visual Studio Code ###
+/.vscode
+
+# 其他要忽略的文件
+.DS_Store
+ignore
+/ignore
+
+# 其他要忽略的目录
+application-local.yml
+/src/main/generated
+ignore
+
+LOG_PATH_IS_UNDEFINED
