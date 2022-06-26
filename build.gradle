@@ -66,3 +66,9 @@ dependencies {
 task helloWorldFromBase(group: "Custom", description: "Hello world task") {
     println "Hello World!"
 }
+
+apply from: 'build_system_info.gradle'
+
+compileJava {
+    dependsOn modifySystemInfo
+}

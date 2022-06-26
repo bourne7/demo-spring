@@ -29,8 +29,15 @@ ignore
 /ignore
 
 # 其他要忽略的目录
-application-local.yml
-/src/main/generated
-ignore
+/generated/
+/build/
+
+*/generated/
+*/build/
+
+**/generated/
+**/build/
+
+*generated*
 
 LOG_PATH_IS_UNDEFINED
